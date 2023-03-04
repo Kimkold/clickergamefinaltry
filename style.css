@@ -1,6 +1,9 @@
 body {
+  background-image: url(Images/Kitchen.png);
   margin: 0;
   font-family: sans-serif;
+  overflow: hidden;
+  z-index: 999;
 }
 
 h2 {
@@ -28,11 +31,11 @@ p {
   grid-template: 100% / 100%;
 }
 
-#game_background {
+/* #game_background {
   grid-area: 1 /1;
 
   background-image: linear-gradient(150deg, #20c903 0%, #09793b 100%);
-}
+} */
 
 #game_elements {
   grid-area: 1 /1;
@@ -189,7 +192,7 @@ p {
 
 /* Animations */
 
-.falling {
+/* .falling {
   animation-name: falling;
   animation-duration: 4s;
   animation-timing-function: linear;
@@ -204,8 +207,107 @@ p {
   100% {
     transform: translate(0, 56.25vw);
   }
+} */
+
+.pattern {
+  animation-name: pattern;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 999;
 }
 
+@keyframes pattern {
+  0% {
+    transform: translate(10vw, 0vw);
+  }
+  25% {
+    transform: translate(-40vw, 25vw);
+  }
+  50% {
+    transform: translate(10vw, 50vw);
+  }
+  75% {
+    transform: translate(60vw, 25vw);
+  }
+  100% {
+    transform: translate(10vw, 0vw);
+  }
+}
+
+.sliding {
+  animation-name: sliding;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 999;
+}
+@keyframes sliding {
+  0% {
+    transform: translate(-100vh, 10vh);
+  }
+  25% {
+    transform: translate(-100vh, 60vh);
+  }
+  50% {
+    transform: translate(60vh, 60vh);
+  }
+  75% {
+    transform: translate(60vh, 10vh);
+  }
+  100% {
+    transform: translate(-100vh, 10vh);
+  }
+}
+.falling1 {
+  animation-name: falling1;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes falling1 {
+  0% {
+    transform: translate(0, -100%);
+  }
+
+  100% {
+    transform: translate(-20vw, 56.25vw);
+  }
+}
+
+.falling2 {
+  animation-name: falling2;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes falling2 {
+  0% {
+    transform: translate(0, -100%);
+  }
+
+  100% {
+    transform: translate(60vw, 56.25vw);
+  }
+}
+.falling3 {
+  animation-name: falling3;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes falling3 {
+  0% {
+    transform: translate(100vw, -100%);
+  }
+
+  100% {
+    transform: translate(20vw, 56.25vw);
+  }
+}
 .zoom_out {
   animation-name: zoom_out;
   animation-duration: 1s;

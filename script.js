@@ -74,11 +74,11 @@ function startGame() {
 
 function startAllAnimations() {
   // Start falling animationer
-  document.querySelector("#salad_container").classList.add("falling");
-  document.querySelector("#tomato_container").classList.add("falling");
-  document.querySelector("#jalapeno_container").classList.add("falling");
-  document.querySelector("#banana_container").classList.add("falling");
-  document.querySelector("#strawberry_container").classList.add("falling");
+  document.querySelector("#salad_container").classList.add("falling1");
+  document.querySelector("#tomato_container").classList.add("falling2");
+  document.querySelector("#jalapeno_container").classList.add("falling3");
+  document.querySelector("#banana_container").classList.add("pattern");
+  document.querySelector("#strawberry_container").classList.add("sliding");
 
   // Sæt position klasser
   document.querySelector("#salad_container").classList.add("position1");
@@ -118,9 +118,9 @@ function saladRestart() {
   console.log("salad restart");
   const salad = this;
 
-  salad.classList.remove("falling");
+  salad.classList.remove("falling1");
   salad.offsetWidth;
-  salad.classList.add("falling");
+  salad.classList.add("falling1");
   salad.classList.remove(
     "position1",
     "position2",
@@ -128,9 +128,10 @@ function saladRestart() {
     "position4",
     "position5"
   );
+  salad.classList.remove("falling1", "falling2", "falling3");
 
-  const p = Math.ceil(Math.random() * 5);
-  salad.classList.add(`position${p}`);
+  const p = Math.ceil(Math.random() * 3);
+  salad.classList.add(`falling${p}`);
 }
 
 function clickTomato() {
@@ -163,9 +164,9 @@ function tomatoRestart() {
   console.log("tomato restart");
   const tomato = this;
 
-  tomato.classList.remove("falling");
+  tomato.classList.remove("falling2");
   tomato.offsetWidth;
-  tomato.classList.add("falling");
+  tomato.classList.add("falling2");
   tomato.classList.remove(
     "position1",
     "position2",
@@ -173,9 +174,10 @@ function tomatoRestart() {
     "position4",
     "position5"
   );
+  tomato.classList.remove("falling1", "falling2", "falling3");
 
-  const p = Math.ceil(Math.random() * 5);
-  tomato.classList.add(`position${p}`);
+  const p = Math.ceil(Math.random() * 3);
+  tomato.classList.add(`falling${p}`);
 }
 
 function clickJalapeno() {
@@ -208,9 +210,9 @@ function jalapenoRestart() {
   console.log("jalapeno restart");
   const jalapeno = this;
 
-  jalapeno.classList.remove("falling");
+  jalapeno.classList.remove("falling3");
   jalapeno.offsetWidth;
-  jalapeno.classList.add("falling");
+  jalapeno.classList.add("falling3");
   jalapeno.classList.remove(
     "position1",
     "position2",
@@ -218,9 +220,12 @@ function jalapenoRestart() {
     "position4",
     "position5"
   );
+  jalapeno.classList.remove("falling1", "falling2", "falling3");
 
-  const p = Math.ceil(Math.random() * 5);
-  jalapeno.classList.add(`position${p}`);
+  const p = Math.ceil(Math.random() * 3);
+  //   jalapeno.classList.add(`position${p}`);
+  //   const t = math.ceil(Math.random() * 3 + 1);
+  jalapeno.classList.add(`falling${p}`);
 }
 function clickBanana() {
   console.log("Click banana");
@@ -449,7 +454,7 @@ function startTimer() {
 
 function timeIsUp() {
   console.log("tiden er gået!");
-  if (points >= 10) {
+  if (points >= 25) {
     levelComplete();
   } else {
     gameOver();
