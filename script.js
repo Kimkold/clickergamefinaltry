@@ -5,6 +5,12 @@ window.addEventListener("load", ready);
 let points = 0;
 let lives = 3;
 
+const salad = document.querySelector("#salad");
+const tomato = document.querySelector("#tomato");
+const jalapeno = document.querySelector("#jalapeno");
+const banana = document.querySelector("#banana");
+const strawberry = document.querySelector("#strawberry");
+
 function ready() {
   console.log("JavaScript ready!");
   document.querySelector("#btn_start").addEventListener("click", startGame);
@@ -38,103 +44,84 @@ function startGame() {
 
   // Registrer click
   document
-    .querySelector("#coin1_container")
-    .addEventListener("click", clickCoin);
+    .querySelector("#salad_container")
+    .addEventListener("click", clickSalad);
   document
-    .querySelector("#coin2_container")
-    .addEventListener("click", clickCoin);
+    .querySelector("#tomato_container")
+    .addEventListener("click", clickTomato);
   document
-    .querySelector("#coin3_container")
-    .addEventListener("click", clickCoin);
+    .querySelector("#jalapeno_container")
+    .addEventListener("click", clickJalapeno);
   document
-    .querySelector("#bomb_container")
-    .addEventListener("click", clickBomb);
+    .querySelector("#banana_container")
+    .addEventListener("click", clickBanana);
   document
-    .querySelector("#heart_container")
-    .addEventListener("click", clickHeart);
+    .querySelector("#strawberry_container")
+    .addEventListener("click", clickStrawberry);
 
   // Registrer når bunden rammes
   document
-    .querySelector("#coin1_container")
-    .addEventListener("animationiteration", coinRestart);
+    .querySelector("#salad_container")
+    .addEventListener("animationiteration", saladRestart);
   document
-    .querySelector("#coin2_container")
-    .addEventListener("animationiteration", coinRestart);
+    .querySelector("#tomato_container")
+    .addEventListener("animationiteration", tomatoRestart);
   document
-    .querySelector("#coin3_container")
-    .addEventListener("animationiteration", coinRestart);
+    .querySelector("#jalapeno_container")
+    .addEventListener("animationiteration", jalapenoRestart);
   startTimer();
 }
 
 function startAllAnimations() {
   // Start falling animationer
-  document.querySelector("#coin1_container").classList.add("falling");
-  document.querySelector("#coin2_container").classList.add("falling");
-  document.querySelector("#coin3_container").classList.add("falling");
-  document.querySelector("#bomb_container").classList.add("falling");
-  document.querySelector("#heart_container").classList.add("falling");
+  document.querySelector("#salad_container").classList.add("falling");
+  document.querySelector("#tomato_container").classList.add("falling");
+  document.querySelector("#jalapeno_container").classList.add("falling");
+  document.querySelector("#banana_container").classList.add("falling");
+  document.querySelector("#strawberry_container").classList.add("falling");
 
   // Sæt position klasser
-  document.querySelector("#coin1_container").classList.add("position1");
-  document.querySelector("#coin2_container").classList.add("position2");
-  document.querySelector("#coin3_container").classList.add("position3");
-  document.querySelector("#bomb_container").classList.add("position4");
-  document.querySelector("#heart_container").classList.add("position5");
+  document.querySelector("#salad_container").classList.add("position1");
+  document.querySelector("#tomato_container").classList.add("position2");
+  document.querySelector("#jalapeno_container").classList.add("position3");
+  document.querySelector("#banana_container").classList.add("position4");
+  document.querySelector("#strawberry_container").classList.add("position5");
 }
 
-function clickCoin() {
-  console.log("Click coin");
-  // Brug en coin variabel i stedet for gentagne querySelectors
-  const coin = this; // document.querySelector("#coin1_container");
+function clickSalad() {
+  console.log("Click salad");
+  const salad = this;
 
-  // Forhindr gentagne clicks
-  coin.removeEventListener("click", clickCoin);
+  salad.removeEventListener("click", clickSalad);
 
-  // Stop coin container
-  coin.classList.add("paused");
-
-  // sæt forsvind-animation på sprite
-  coin.querySelector("img").classList.add("zoom_out");
+  salad.classList.add("paused");
+  salad.querySelector("img").classList.add("zoom_out");
 
   document.querySelector("#sound_coin").currentTime = 0;
   document.querySelector("#sound_coin").play();
-  // når forsvind-animation er færdig: coinGone
-  coin.addEventListener("animationend", coinGone);
+  salad.addEventListener("animationend", saladGone);
 
-  // Giv point
-  incrementPoints();
+  incrementPoints2();
 }
 
-function coinGone() {
-  console.log("coin gone");
-  // Brug en coin variabel i stedet for gentagne querySelectors
-  const coin = this; //document.querySelector("#coin1_container");
-  // fjern event der bringer os herind
-  coin.removeEventListener("animationend", coinGone);
-
-  // fjern forsvind-animation på sprite
-  coin.querySelector("img").classList.remove("zoom_out");
-
-  // fjern pause
-  coin.classList.remove("paused");
-
-  coinRestart.call(this);
-
-  // gør det muligt at klikke på coin igen
-  coin.addEventListener("click", clickCoin);
+function saladGone() {
+  console.log("salad gone");
+  const salad = this;
+  salad.removeEventListener("animationend", saladGone);
+  salad.querySelector("img").classList.remove("zoom_out");
+  salad.classList.remove("paused");
+  saladRestart.call(this);
+  salad.addEventListener("click", clickSalad);
 }
 
-function coinRestart() {
-  console.log("coin restart");
-  const coin = this;
+function saladRestart() {
+  console.log("salad restart");
+  const salad = this;
 
-  // genstart falling animation
-  coin.classList.remove("falling");
-  coin.offsetWidth;
-  coin.classList.add("falling");
-
-  // fjern alle positioner
-  coin.classList.remove(
+  salad.classList.remove("falling");
+  salad.offsetWidth;
+  salad.classList.add("falling");
+  salad.classList.remove(
     "position1",
     "position2",
     "position3",
@@ -142,102 +129,233 @@ function coinRestart() {
     "position5"
   );
 
-  // sæt position til en ny klasse
   const p = Math.ceil(Math.random() * 5);
-  coin.classList.add(`position${p}`);
+  salad.classList.add(`position${p}`);
 }
 
-function clickBomb() {
-  console.log("Click bomb");
-  // Forhindr gentagne clicks
+function clickTomato() {
+  console.log("Click tomato");
+  const tomato = this;
+
+  tomato.removeEventListener("click", clickTomato);
+
+  tomato.classList.add("paused");
+  tomato.querySelector("img").classList.add("zoom_out");
+
+  document.querySelector("#sound_coin").currentTime = 0;
+  document.querySelector("#sound_coin").play();
+  tomato.addEventListener("animationend", tomatoGone);
+
+  incrementPoints();
+}
+
+function tomatoGone() {
+  console.log("tomato gone");
+  const tomato = this;
+  tomato.removeEventListener("animationend", tomatoGone);
+  tomato.querySelector("img").classList.remove("zoom_out");
+  tomato.classList.remove("paused");
+  tomatoRestart.call(this);
+  tomato.addEventListener("click", clickTomato);
+}
+
+function tomatoRestart() {
+  console.log("tomato restart");
+  const tomato = this;
+
+  tomato.classList.remove("falling");
+  tomato.offsetWidth;
+  tomato.classList.add("falling");
+  tomato.classList.remove(
+    "position1",
+    "position2",
+    "position3",
+    "position4",
+    "position5"
+  );
+
+  const p = Math.ceil(Math.random() * 5);
+  tomato.classList.add(`position${p}`);
+}
+
+function clickJalapeno() {
+  console.log("Click Jalapeno");
+  const jalapeno = this;
+
+  jalapeno.removeEventListener("click", clickJalapeno);
+
+  jalapeno.classList.add("paused");
+  jalapeno.querySelector("img").classList.add("zoom_out");
+
+  document.querySelector("#sound_coin").currentTime = 0;
+  document.querySelector("#sound_coin").play();
+  jalapeno.addEventListener("animationend", jalapenoGone);
+
+  incrementPoints3();
+}
+
+function jalapenoGone() {
+  console.log("jalapeno gone");
+  const jalapeno = this;
+  jalapeno.removeEventListener("animationend", jalapenoGone);
+  jalapeno.querySelector("img").classList.remove("zoom_out");
+  jalapeno.classList.remove("paused");
+  jalapenoRestart.call(this);
+  jalapeno.addEventListener("click", clickJalapeno);
+}
+
+function jalapenoRestart() {
+  console.log("jalapeno restart");
+  const jalapeno = this;
+
+  jalapeno.classList.remove("falling");
+  jalapeno.offsetWidth;
+  jalapeno.classList.add("falling");
+  jalapeno.classList.remove(
+    "position1",
+    "position2",
+    "position3",
+    "position4",
+    "position5"
+  );
+
+  const p = Math.ceil(Math.random() * 5);
+  jalapeno.classList.add(`position${p}`);
+}
+function clickBanana() {
+  console.log("Click banana");
+  const banana = this;
   document
-    .querySelector("#bomb_container")
-    .removeEventListener("click", clickBomb);
-
-  // Stop coin container
-  document.querySelector("#bomb_container").classList.add("paused");
-
-  // sæt forsvind-animation på coin
-  document.querySelector("#bomb_sprite").classList.add("zoom_in");
-
-  // når forsvind-animation er færdig: coinGone
-  document
-    .querySelector("#bomb_container")
-    .addEventListener("animationend", bombGone);
+    .querySelector("#banana_container")
+    .removeEventListener("click", clickBanana);
+  banana.classList.add("paused");
+  document.querySelector("#banana_sprite").classList.add("zoom_in");
+  banana.addEventListener("animationend", bananaGone);
 
   document.querySelector("#sound_bomb").currentTime = 0;
   document.querySelector("#sound_bomb").play();
   decrementLives();
 }
 
-function bombGone() {
-  // fjern event der bringer os herind
-  document
-    .querySelector("#bomb_container")
-    .removeEventListener("animationend", bombGone);
-
-  // fjern forsvind-animation
-  document.querySelector("#bomb_sprite").classList.remove("zoom_in");
-
-  // fjern pause
-  document.querySelector("#bomb_container").classList.remove("paused");
-
-  // genstart falling animation
-  document.querySelector("#bomb_container").classList.remove("falling");
-  document.querySelector("#bomb_container").offsetWidth;
-  document.querySelector("#bomb_container").classList.add("falling");
-
-  // gør det muligt at klikke på bomb igen
-  document
-    .querySelector("#bomb_container")
-    .addEventListener("click", clickBomb);
+function bananaGone() {
+  const banana = this;
+  banana.removeEventListener("animationend", bananaGone);
+  document.querySelector("#banana_sprite").classList.remove("zoom_in");
+  banana.classList.remove("paused");
+  banana.classList.remove("falling");
+  banana.offsetWidth;
+  banana.classList.add("falling");
+  bananaRestart.call(this);
+  banana.addEventListener("click", clickBanana);
 }
 
-function clickHeart() {
-  console.log("Click heart");
-  // Forhindr gentagne clicks
-  document
-    .querySelector("#heart_container")
-    .removeEventListener("click", clickHeart);
+function bananaRestart() {
+  console.log("banana restart");
+  const banana = this;
 
-  // Stop heart container
-  document.querySelector("#heart_container").classList.add("paused");
+  banana.classList.remove("falling");
+  banana.offsetWidth;
+  banana.classList.add("falling");
+  banana.classList.remove(
+    "position1",
+    "position2",
+    "position3",
+    "position4",
+    "position5"
+  );
 
-  // sæt forsvind-animation på heart
-  document.querySelector("#heart_sprite").classList.add("zoom_out");
-
-  // når forsvind-animation er færdig: heatGone
-  document
-    .querySelector("#heart_container")
-    .addEventListener("animationend", heartGone);
-
-  if (lives < 3) {
-    incrementLives();
-  }
+  const p = Math.ceil(Math.random() * 5);
+  banana.classList.add(`position${p}`);
 }
 
-function heartGone() {
-  // fjern event der bringer os herind
-  document
-    .querySelector("#heart_container")
-    .removeEventListener("animationend", heartGone);
+function clickStrawberry() {
+  console.log("Click strawberry");
+  const strawberry = this;
+  strawberry.removeEventListener("click", clickStrawberry);
+  strawberry.classList.add("paused");
+  document.querySelector("#strawberry_sprite").classList.add("zoom_in");
+  strawberry.addEventListener("animationend", strawberryGone);
 
-  // fjern forsvind-animation
-  document.querySelector("#heart_sprite").classList.remove("zoom_out");
-
-  // fjern pause
-  document.querySelector("#heart_container").classList.remove("paused");
-
-  // genstart falling animation
-  document.querySelector("#heart_container").classList.remove("falling");
-  document.querySelector("#heart_container").offsetWidth;
-  document.querySelector("#heart_container").classList.add("falling");
-
-  // gør det muligt at klikke på heart igen
-  document
-    .querySelector("#heart_container")
-    .addEventListener("click", clickHeart);
+  document.querySelector("#sound_bomb").currentTime = 0;
+  document.querySelector("#sound_bomb").play();
+  decrementLives();
 }
+
+function strawberryGone() {
+  const strawberry = this;
+  strawberry.removeEventListener("animationend", strawberryGone);
+  document.querySelector("#strawberry_sprite").classList.remove("zoom_in");
+  strawberry.classList.remove("paused");
+  strawberry.classList.remove("falling");
+  strawberry.offsetWidth;
+  strawberry.classList.add("falling");
+  strawberryRestart.call(this);
+  strawberry.addEventListener("click", clickStrawberry);
+}
+
+function strawberryRestart() {
+  console.log("strawberry restart");
+  const strawberry = this;
+
+  strawberry.classList.remove("falling");
+  strawberry.offsetWidth;
+  strawberry.classList.add("falling");
+  strawberry.classList.remove(
+    "position1",
+    "position2",
+    "position3",
+    "position4",
+    "position5"
+  );
+
+  const p = Math.ceil(Math.random() * 5);
+  strawberry.classList.add(`position${p}`);
+}
+// function clickHeart() {
+//   console.log("Click heart");
+//   // Forhindr gentagne clicks
+//   document
+//     .querySelector("#heart_container")
+//     .removeEventListener("click", clickHeart);
+
+//   // Stop heart container
+//   document.querySelector("#heart_container").classList.add("paused");
+
+//   // sæt forsvind-animation på heart
+//   document.querySelector("#heart_sprite").classList.add("zoom_out");
+
+//   // når forsvind-animation er færdig: heatGone
+//   document
+//     .querySelector("#heart_container")
+//     .addEventListener("animationend", heartGone);
+
+//   if (lives < 3) {
+//     incrementLives();
+//   }
+// }
+
+// function heartGone() {
+//   // fjern event der bringer os herind
+//   document
+//     .querySelector("#heart_container")
+//     .removeEventListener("animationend", heartGone);
+
+//   // fjern forsvind-animation
+//   document.querySelector("#heart_sprite").classList.remove("zoom_out");
+
+//   // fjern pause
+//   document.querySelector("#heart_container").classList.remove("paused");
+
+//   // genstart falling animation
+//   document.querySelector("#heart_container").classList.remove("falling");
+//   document.querySelector("#heart_container").offsetWidth;
+//   document.querySelector("#heart_container").classList.add("falling");
+
+//   // gør det muligt at klikke på heart igen
+//   document
+//     .querySelector("#heart_container")
+//     .addEventListener("click", clickHeart);
+// }
 
 function incrementPoints() {
   console.log("Giv point");
@@ -245,7 +363,29 @@ function incrementPoints() {
   console.log("har nu " + points + " point");
   displayPoints();
 
-  if (points >= 10) {
+  if (points >= 25) {
+    levelComplete();
+  }
+}
+
+function incrementPoints2() {
+  console.log("Giv point");
+  points = points + 2;
+  console.log("har nu " + points + " point");
+  displayPoints();
+
+  if (points >= 25) {
+    levelComplete();
+  }
+}
+
+function incrementPoints3() {
+  console.log("Giv point");
+  points = points + 3;
+  console.log("har nu " + points + " point");
+  displayPoints();
+
+  if (points >= 25) {
     levelComplete();
   }
 }
@@ -266,11 +406,11 @@ function decrementLives() {
   lives--;
 }
 
-function incrementLives() {
-  console.log("få et liv");
-  lives++;
-  showIncrementedLives();
-}
+// function incrementLives() {
+//   console.log("få et liv");
+//   lives++;
+//   showIncrementedLives();
+// }
 
 function showDecrementedLives() {
   document.querySelector("#heart" + lives).classList.remove("active_heart");
@@ -297,6 +437,7 @@ function levelComplete() {
   document.querySelector("#game_complete").currentTime = 0;
   document.querySelector("#game_complete").play();
   document.querySelector("#btn_retry").addEventListener("click", startGame);
+  resetPoints();
   stopGame();
 }
 function startTimer() {
@@ -323,27 +464,27 @@ function stopGame() {
 
   document.querySelector("#game_start").pause();
   // Stop animationer
-  document.querySelector("#coin1_container").classList.remove("falling");
-  document.querySelector("#coin2_container").classList.remove("falling");
-  document.querySelector("#coin3_container").classList.remove("falling");
-  document.querySelector("#bomb_container").classList.remove("falling");
-  document.querySelector("#heart_container").classList.remove("falling");
+  document.querySelector("#salad_container").classList.remove("falling");
+  document.querySelector("#tomato_container").classList.remove("falling");
+  document.querySelector("#jalapeno_container").classList.remove("falling");
+  document.querySelector("#banana_container").classList.remove("falling");
+  document.querySelector("#strawberry_container").classList.remove("falling");
   document.querySelector("#sound_background").pause();
 
   // Fjern click
   document
-    .querySelector("#coin1_container")
-    .removeEventListener("click", clickCoin);
+    .querySelector("#salad_container")
+    .removeEventListener("click", clickSalad);
   document
-    .querySelector("#coin2_container")
-    .removeEventListener("click", clickCoin);
+    .querySelector("#tomato_container")
+    .removeEventListener("click", clickTomato);
   document
-    .querySelector("#coin3_container")
-    .removeEventListener("click", clickCoin);
+    .querySelector("#jalapeno_container")
+    .removeEventListener("click", clickJalapeno);
   document
-    .querySelector("#bomb_container")
-    .removeEventListener("click", clickBomb);
+    .querySelector("#banana_container")
+    .removeEventListener("click", clickBanana);
   document
-    .querySelector("#heart_container")
-    .removeEventListener("click", clickHeart);
+    .querySelector("#strawberry_container")
+    .removeEventListener("click", clickStrawberry);
 }

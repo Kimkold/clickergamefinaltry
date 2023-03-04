@@ -71,53 +71,53 @@ p {
 
 /* positioning elements */
 
-#coin1_container {
+#salad_container {
   position: absolute;
 
   top: 0;
 }
 
-#coin1_sprite {
+#salad_sprite {
   width: 100%;
 }
 
-#coin2_container {
+#tomato_container {
   position: absolute;
 
   top: 0;
 }
 
-#coin2_sprite {
+#tomato_sprite {
   width: 100%;
 }
 
-#coin3_container {
+#jalapeno_container {
   position: absolute;
 
   top: 0;
 }
 
-#coin3_sprite {
+#jalapeno_sprite {
   width: 100%;
 }
 
-#bomb_container {
+#banana_container {
   position: absolute;
 
   top: 0;
 }
 
-#bomb_sprite {
+#banana_sprite {
   width: 100%;
 }
 
-#heart_container {
+#strawberry_container {
   position: absolute;
 
   top: 0;
 }
 
-#heart_sprite {
+#strawberry_sprite {
   width: 100%;
 }
 
@@ -312,7 +312,7 @@ button {
 
 .shrink {
   animation-name: shrink_kf;
-  animation-duration: 12s;
+  animation-duration: 60s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
