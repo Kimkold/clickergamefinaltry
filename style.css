@@ -2,7 +2,7 @@ body {
   background-image: url(Images/Kitchen.png);
   margin: 0;
   font-family: sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */
   z-index: 999;
 }
 
@@ -31,11 +31,11 @@ p {
   grid-template: 100% / 100%;
 }
 
-/* #game_background {
+#game_background {
   grid-area: 1 /1;
-
-  background-image: linear-gradient(150deg, #20c903 0%, #09793b 100%);
-} */
+  /* 
+  background-image: linear-gradient(150deg, #20c903 0%, #09793b 100%); */
+}
 
 #game_elements {
   grid-area: 1 /1;
@@ -264,6 +264,7 @@ p {
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 
 @keyframes falling1 {
@@ -281,6 +282,7 @@ p {
   animation-duration: 3s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 
 @keyframes falling2 {
@@ -297,6 +299,7 @@ p {
   animation-duration: 6s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
 }
 
 @keyframes falling3 {

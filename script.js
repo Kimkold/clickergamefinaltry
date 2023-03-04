@@ -269,8 +269,8 @@ function bananaRestart() {
     "position5"
   );
 
-  const p = Math.ceil(Math.random() * 5);
-  banana.classList.add(`position${p}`);
+  //   const p = Math.ceil(Math.random() * 3);
+  //   banana.classList.add(`position${p}`);
 }
 
 function clickStrawberry() {
@@ -313,8 +313,8 @@ function strawberryRestart() {
     "position5"
   );
 
-  const p = Math.ceil(Math.random() * 5);
-  strawberry.classList.add(`position${p}`);
+  //   const p = Math.ceil(Math.random() * 3);
+  //   strawberry.classList.add(`position${p}`);
 }
 // function clickHeart() {
 //   console.log("Click heart");
