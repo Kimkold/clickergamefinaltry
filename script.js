@@ -1,7 +1,6 @@
 "use strict";
 window.addEventListener("load", ready);
 
-// globale variabler
 let points = 0;
 let lives = 3;
 
@@ -27,22 +26,18 @@ function resetLives() {
 
 function startGame() {
   resetLives();
-  // nulstil point og liv
   points = 0;
   lives = 3;
 
   document.querySelector("#game_start").currentTime = 0;
   document.querySelector("#game_start").play();
 
-  // skjul startskærm
   document.querySelector("#start").classList.add("hidden");
   document.querySelector("#game_over").classList.add("hidden");
   document.querySelector("#level_complete").classList.add("hidden");
 
-  // start alle animationer
   startAllAnimations();
 
-  // Registrer click
   document
     .querySelector("#salad_container")
     .addEventListener("click", clickSalad);
@@ -59,7 +54,6 @@ function startGame() {
     .querySelector("#strawberry_container")
     .addEventListener("click", clickStrawberry);
 
-  // Registrer når bunden rammes
   document
     .querySelector("#salad_container")
     .addEventListener("animationiteration", saladRestart);
@@ -73,14 +67,12 @@ function startGame() {
 }
 
 function startAllAnimations() {
-  // Start falling animationer
   document.querySelector("#salad_container").classList.add("falling1");
   document.querySelector("#tomato_container").classList.add("falling2");
   document.querySelector("#jalapeno_container").classList.add("falling3");
   document.querySelector("#banana_container").classList.add("pattern");
   document.querySelector("#strawberry_container").classList.add("sliding");
 
-  // Sæt position klasser
   document.querySelector("#salad_container").classList.add("position1");
   document.querySelector("#tomato_container").classList.add("position2");
   document.querySelector("#jalapeno_container").classList.add("position3");
@@ -316,51 +308,6 @@ function strawberryRestart() {
   //   const p = Math.ceil(Math.random() * 3);
   //   strawberry.classList.add(`position${p}`);
 }
-// function clickHeart() {
-//   console.log("Click heart");
-//   // Forhindr gentagne clicks
-//   document
-//     .querySelector("#heart_container")
-//     .removeEventListener("click", clickHeart);
-
-//   // Stop heart container
-//   document.querySelector("#heart_container").classList.add("paused");
-
-//   // sæt forsvind-animation på heart
-//   document.querySelector("#heart_sprite").classList.add("zoom_out");
-
-//   // når forsvind-animation er færdig: heatGone
-//   document
-//     .querySelector("#heart_container")
-//     .addEventListener("animationend", heartGone);
-
-//   if (lives < 3) {
-//     incrementLives();
-//   }
-// }
-
-// function heartGone() {
-//   // fjern event der bringer os herind
-//   document
-//     .querySelector("#heart_container")
-//     .removeEventListener("animationend", heartGone);
-
-//   // fjern forsvind-animation
-//   document.querySelector("#heart_sprite").classList.remove("zoom_out");
-
-//   // fjern pause
-//   document.querySelector("#heart_container").classList.remove("paused");
-
-//   // genstart falling animation
-//   document.querySelector("#heart_container").classList.remove("falling");
-//   document.querySelector("#heart_container").offsetWidth;
-//   document.querySelector("#heart_container").classList.add("falling");
-
-//   // gør det muligt at klikke på heart igen
-//   document
-//     .querySelector("#heart_container")
-//     .addEventListener("click", clickHeart);
-// }
 
 function incrementPoints() {
   console.log("Giv point");
@@ -410,12 +357,6 @@ function decrementLives() {
   showDecrementedLives();
   lives--;
 }
-
-// function incrementLives() {
-//   console.log("få et liv");
-//   lives++;
-//   showIncrementedLives();
-// }
 
 function showDecrementedLives() {
   document.querySelector("#heart" + lives).classList.remove("active_heart");
@@ -468,7 +409,6 @@ function stopGame() {
   document.querySelector("#time_sprite").classList.remove("shrink");
 
   document.querySelector("#game_start").pause();
-  // Stop animationer
   document.querySelector("#salad_container").classList.remove("falling");
   document.querySelector("#tomato_container").classList.remove("falling");
   document.querySelector("#jalapeno_container").classList.remove("falling");
@@ -476,7 +416,6 @@ function stopGame() {
   document.querySelector("#strawberry_container").classList.remove("falling");
   document.querySelector("#sound_background").pause();
 
-  // Fjern click
   document
     .querySelector("#salad_container")
     .removeEventListener("click", clickSalad);
